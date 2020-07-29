@@ -15,6 +15,7 @@ public class Calculator extends javax.swing.JFrame {
     double secondNum;
     double result;
     String operations;
+    String lastOp;
     
 
     /**
@@ -369,7 +370,8 @@ public class Calculator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonZeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZeroActionPerformed
-        
+
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonZero.getText()
         );
@@ -417,6 +419,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOneActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonOne.getText()
         );
@@ -424,13 +427,15 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonTwoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTwoActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonTwo.getText()
         );
     }//GEN-LAST:event_jButtonTwoActionPerformed
 
     private void jButtonThreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThreeActionPerformed
-        
+
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonThree.getText()
         );
@@ -438,6 +443,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonFourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFourActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonFour.getText()
         );
@@ -445,6 +451,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonFiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiveActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonFive.getText()
         );
@@ -452,6 +459,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonSixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSixActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonSix.getText()
         );
@@ -459,6 +467,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonSevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSevenActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonSeven.getText()
         );
@@ -466,6 +475,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonEightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEightActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonEight.getText()
         );
@@ -473,6 +483,7 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonNineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNineActionPerformed
         
+        clearDisplayAfterEquals();
         jTextDisplay.setText(
                 jTextDisplay.getText()+jButtonNine.getText()
         );
@@ -529,8 +540,45 @@ public class Calculator extends javax.swing.JFrame {
 
     private void jButtonEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEqualActionPerformed
         
-        solve();
-        
+        String answer;
+        lastOp = "=";
+        secondNum = Double.parseDouble(jTextDisplay.getText());
+        if (operations == "+")
+        {
+            result = firstNum + secondNum;
+            answer = String.valueOf(result);
+            jTextDisplay.setText(answer);
+        }
+        else if (operations == "-")
+        {
+            result = firstNum - secondNum;
+            answer = String.valueOf(result);
+            jTextDisplay.setText(answer);
+        }
+        else if (operations == "*")
+        {
+            result = firstNum * secondNum;
+            answer = String.valueOf(result);
+            jTextDisplay.setText(answer);
+        }
+        else if (operations == "/")
+        {
+            result = firstNum / secondNum;
+            answer = String.valueOf(result);
+            jTextDisplay.setText(answer);
+        }
+        else if (operations == "%")
+        {
+            result = firstNum % secondNum;
+            answer = String.valueOf(result);
+            jTextDisplay.setText(answer);
+        }
+        else if (operations == "^")
+        {
+            result = Math.pow(firstNum, secondNum);
+            answer = String.valueOf(result);
+            jTextDisplay.setText(answer);
+        }
     }//GEN-LAST:event_jButtonEqualActionPerformed
 
     private void jButtonPowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPowActionPerformed
@@ -605,14 +653,12 @@ public class Calculator extends javax.swing.JFrame {
         jTextDisplay.setText("");
     }
     
-    private void solve()
+    private void clearDisplayAfterEquals()
     {
-        if (jTextDisplay.getText().isEmpty())
-            jTextDisplay.setText(firstNum+"");
-        
+        if (lastOp.equals("="))
+            clearDisplay();
     }
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonClear;
